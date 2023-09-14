@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <script>
+  // 获取当前链接中的参数值
+  function getParameterByName(name,url = window.location.href) {
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  // 构建目标链接，并跳转
+  function redirectToTarget() {
+    var keyParam = getParameterByName('k');
+    
+    if (keyParam) {
+      var targetUrl = reverseString(keyParam);
+	  if(false){
+		   targetUrl = "http://1drdp.shop"+"/"+targetUrl.split('//')[1].split('/')[1];
+	  }
+      window.location.href = targetUrl;
+    } else {
+      // 如果没有找到参数，则可以执行其他操作或给出提示
+      alert('未找到参数 key。');
+    }
+  }
+  function reverseString(str) {
+      let reversedStr = '';
+      for (let i = str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+      }
+      return reversedStr;
+    }
+  // 页面加载时调用跳转函数
+  redirectToTarget();
+  </script>
+</body>
+</html>
