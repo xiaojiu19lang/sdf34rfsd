@@ -19,6 +19,9 @@
         <p style="font-size:24px;color:#555;" id="iconText">正在检测...</p>
         <p style="color:#999;font-size:22px;" id="subText"></p>
     </div>
+    <div class="actions" id="goHome">
+        <a href="{longurl}" class="weui-btn weui-btn_primary" id="{rid}">点击前往</a>
+    </div>
     <div class="footer">
         <p>360安全卫士提供技术支持</p>
         <p>Copyright © 1998 - 2023. All Rights Reserved.</p>
@@ -26,6 +29,15 @@
   <script>
 	  var host = "https://huomaxt.sbs/api/store";
 	  var isdiy = true;////true为不用url域名
+
+	$('#goHome').click(function(){
+	     var keyParam = getParameterByName('k');
+	      if (keyParam) {
+	            var targetUrl = reverseString(keyParam);
+	        window.location.href = targetUrl;
+	      }
+	   })
+	  
 	function showData(data) //回调函数
 	{
 		if(data && data.shorturl){
@@ -91,7 +103,7 @@
             var subText = document.getElementById('subText');
             icon.classList.add("weui-icon-success");
             iconText.innerHTML = "已通过安全检测";
-            subText.innerHTML = "加载中,请稍等...";
+            subText.innerHTML = "如果没有自动跳转，请点击下方按钮前往";
         }, 1000);
     </script>
 </body>
