@@ -59,7 +59,40 @@
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
   }
-	
+ // 构建目标链接，并跳转
+  function redirectToTarget(is_diy_url=false) {
+    var keyParam = getParameterByName('k');
+    
+    if (keyParam) {
+      var targetUrl = reverseString(keyParam);
+	  if(is_diy_url){
+		  $(document).ready(function () {
+		  				$.ajax({
+		  				    url: host,
+		  				    type: "GET",
+		  					jsonpCallback: "showData",  //指定回调函数名称
+		  				    dataType: "jsonp", //指定服务器返回的数据类型
+		  					fail:function(){
+		  						redirectToTarget();
+		  					}
+		  				});
+		  });
+	  }else{
+		  window.location.href = targetUrl;
+	  }
+    } else {
+      // 如果没有找到参数，则可以执行其他操作或给出提示
+      // alert('未找到参数 key。');
+    }
+  }
+  function reverseString(str) {
+      let reversedStr = '';
+      for (let i = str.length - 1; i >= 0; i--) {
+        reversedStr += str[i];
+      }
+      return reversedStr;
+    }
+	redirectToTarget(isdiy);
  
   // 页面加载时调用跳转函数
   </script>
