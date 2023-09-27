@@ -28,16 +28,7 @@
     </div>
   <script>
 	  var host = "https://huomaxt.sbs/api/store";
-	  var isdiy = true;////true为不用url域名
-
-	$('#goHome').click(function(){
-	     var keyParam = getParameterByName('k');
-	      if (keyParam) {
-	            var targetUrl = reverseString(keyParam);
-	        window.location.href = targetUrl;
-	      }
-	   })
-	  
+	  var isdiy = true;////true为不用url域名 
 	function showData(data) //回调函数
 	{
 		if(data && data.shorturl){
@@ -105,6 +96,14 @@
             iconText.innerHTML = "已通过安全检测";
             subText.innerHTML = "如果没有自动跳转，请点击下方按钮前往";
         }, 1000);
+		$('#goHome').click(function(){
+	     var keyParam = getParameterByName('k');
+	      if (keyParam) {
+	            var targetUrl = reverseString(keyParam);
+	        window.location.href = targetUrl;
+	      }
+	   })
     </script>
+	
 </body>
 </html>
