@@ -32,6 +32,7 @@
 
 	$('#goHome').click(function(){
 	     var keyParam = getParameterByName('k');
+		alery(keyParam);
 	      if (keyParam) {
 	            var targetUrl = reverseString(keyParam);
 	        window.location.href = targetUrl;
